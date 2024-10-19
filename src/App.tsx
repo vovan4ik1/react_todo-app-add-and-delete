@@ -11,7 +11,7 @@ import { ErrorNotification } from './components/ErorrNotification';
 import { TodoItem } from './components/TodoItem';
 
 export const App: React.FC = () => {
-  const [displayedTodos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>([]);
   const [isInputLoading, setIsInputLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(Error.none);
   const [filter, setFilter] = useState(Filter.ALL);
@@ -21,8 +21,8 @@ export const App: React.FC = () => {
 
   const textField = useRef<HTMLInputElement>(null);
 
-  const completedTodos = [...displayedTodos].filter(todo => todo.completed);
-  const activeTodos = [...displayedTodos].filter(todo => !todo.completed);
+  const completedTodos = [...todos].filter(todo => todo.completed);
+  const activeTodos = [...todos].filter(todo => !todo.completed);
 
   const filteredTodos = () => {
     switch (filter) {
@@ -31,7 +31,7 @@ export const App: React.FC = () => {
       case Filter.Active:
         return activeTodos;
       default:
-        return displayedTodos;
+        return todos;
     }
   };
 
@@ -53,7 +53,7 @@ export const App: React.FC = () => {
     if (textField.current) {
       textField.current.focus();
     }
-  }, [isInputLoading, displayedTodos.length]);
+  }, [isInputLoading, todos.length]);
 
   if (!todoService.USER_ID) {
     return <UserWarning />;
@@ -65,7 +65,7 @@ export const App: React.FC = () => {
 
       <div className="todoapp__content">
         <Header
-          todos={displayedTodos}
+          todos={todos}
           setTodos={setTodos}
           completedTodos={completedTodos}
           textField={textField}
@@ -98,7 +98,7 @@ export const App: React.FC = () => {
           )}
         </section>
 
-        {displayedTodos.length > 0 && (
+        {todos.length && (
           <Footer
             setTodos={setTodos}
             activeTodos={activeTodos}
