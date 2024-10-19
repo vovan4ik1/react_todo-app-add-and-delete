@@ -24,7 +24,7 @@ export const Footer: React.FC<Props> = ({
   setErrorMessage,
   setDeletingTodoIds,
 }) => {
-  async function handleClearCompleted() {
+  const handleClearCompleted = async () => {
     const completedTodoIds = completedTodos.map(todo => todo.id);
 
     setDeletingTodoIds(completedTodoIds);
@@ -55,7 +55,7 @@ export const Footer: React.FC<Props> = ({
     }
 
     setDeletingTodoIds([]);
-  }
+  };
 
   return (
     <footer className="todoapp__footer" data-cy="Footer">

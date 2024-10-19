@@ -98,7 +98,7 @@ export const App: React.FC = () => {
           )}
         </section>
 
-        {todos.length && (
+        {!!todos.length && (
           <Footer
             setTodos={setTodos}
             activeTodos={activeTodos}

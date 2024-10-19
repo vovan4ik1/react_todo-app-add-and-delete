@@ -66,9 +66,7 @@ export const TodoItem: React.FC<Props> = ({
 
       {/* Remove button appears only on hover */}
       <button
-        onClick={() => {
-          handleDeleteTodo(id);
-        }}
+        onClick={() => handleDeleteTodo(id)}
         type="button"
         className="todo__remove"
         data-cy="TodoDelete"
